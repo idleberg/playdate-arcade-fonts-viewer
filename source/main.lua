@@ -26,7 +26,7 @@ function init()
     if (store.read("config") == nil) then
         init_store()
     end
-    
+
     toggle_mode(store.read("config").inverted == false)
     add_menu()
 
@@ -41,8 +41,8 @@ init()
 
 function playdate.update()
     playdate.timer.updateTimers()
-    
-    local delay = 1000
+
+    local delay = 0
 
     if not intro_played then
         play_intro()
@@ -107,13 +107,15 @@ function show_viewer()
         text_state = text_state == 2 and 0 or text_state + 1
     end
 
+    if text_state == 1 then
+        message = string.upper(default_text)
+    elseif text_state == 2 then
+        message = string.lower(default_text)
+    end
+
     for index, file in ipairs(fonts) do
         if text_state == 0 then
             message = file.name
-        elseif text_state == 1 then 
-            message = string.upper(default_text)
-        elseif text_state == 2 then
-            message = string.lower(default_text)
         end
 
         local messageWidth, messageHeight = gfx.getTextSize(message)
