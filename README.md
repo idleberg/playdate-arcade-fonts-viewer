@@ -6,6 +6,10 @@
 
 A simple viewer for my collection of [arcade fonts](https://idleberg.github.io/playdate-arcade-fonts) for the Playdate.
 
+## Installation
+
+Get the [latest version](https://github.com/idleberg/playdate-arcade-fonts-viewer/releases/latest).
+
 ## License
 
 This work is licensed under [The MIT License](https://opensource.org/licenses/MIT).
