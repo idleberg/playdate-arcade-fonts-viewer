@@ -2,4 +2,4 @@ name=Arcade Fonts Viewer
 author=idleberg
 description=Font viewer for Playdate Arcade Fonts
 bundleID=com.idleberg.arcade-fonts-viewer
-version=0.1.0
+version=0.1.1
