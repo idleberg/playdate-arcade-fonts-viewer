@@ -2,6 +2,10 @@
 
 ![Screenshot](https://raw.github.com/idleberg/playdate-arcade-fonts-viewer/main/screenshot.png)
 
+## Description
+
+A simple viewer for my collection of [arcade fonts](https://idleberg.github.io/playdate-arcade-fonts) for the Playdate.
+
 ## License
 
 This work is licensed under [The MIT License](https://opensource.org/licenses/MIT).
