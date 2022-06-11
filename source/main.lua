@@ -23,6 +23,8 @@ local text_state = 0
 local total_height = 0
 
 function init()
+    print('app.uuid=cfa01cf3922543ce8c8bf5cb584e66f3')
+
     if (store.read("config") == nil) then
         init_store()
     end
