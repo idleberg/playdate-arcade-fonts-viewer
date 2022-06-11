@@ -42,19 +42,17 @@ init()
 function playdate.update()
     playdate.timer.updateTimers()
 
-    local delay = 0
+    local delay <const> = intro_played and 0 or 1000
+    local timer = playdate.timer.new(delay, 0, 1)
 
-    if not intro_played then
-        play_intro()
-
-        intro_played = true
-        delay = 3000
+    timer.updateCallback = function (t)
+      if not intro_played then play_intro() end
     end
 
-    timer.performAfterDelay(delay, function()
-        show_viewer()
-    end)
-    -- show_viewer()
+    timer.timerEndedCallback = function ()
+      intro_played = true
+      show_viewer()
+    end
 end
 
 function playdate.downButtonDown()
