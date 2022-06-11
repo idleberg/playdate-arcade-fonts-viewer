@@ -1,10 +1,8 @@
 # 👾 playdate-arcade-fonts-viewer
 
+> A simple viewer for my collection of [arcade fonts][] for the Playdate
+
 ![Screenshot](https://raw.github.com/idleberg/playdate-arcade-fonts-viewer/main/screenshot.png)
-
-## Description
-
-A simple viewer for my collection of [arcade fonts][] for the Playdate.
 
 ## Installation
 
