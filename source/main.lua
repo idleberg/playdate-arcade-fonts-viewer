@@ -5,6 +5,7 @@ import "CoreLibs/timer"
 
 import "config"
 import "fs"
+import "scenes/intro"
 
 local gfx <const> = playdate.graphics
 local display <const> = playdate.display
@@ -70,39 +71,40 @@ function playdate.update()
 end
 
 function playdate.downButtonDown()
-    lock_screen(-display.getHeight())
+    move_sprite(-display.getHeight())
 end
 
 function playdate.upButtonDown()
-    lock_screen(display.getHeight())
+    move_sprite(display.getHeight())
 end
 
 function playdate.cranked(change, acceleratedChange)
-    lock_screen(change)
+    move_sprite(change)
 end
 
-function lock_screen(change)
-    local allSprites <const> = playdate.graphics.sprite.getAllSprites()
+function move_sprite(yDistance)
+    print("playdate.graphics.getDrawOffset()", playdate.graphics.getDrawOffset())
+    -- local allSprites <const> = playdate.graphics.sprite.getAllSprites()
 
-    offset = offset + change
+    offset = offset + yDistance
 
-    for index, sprite in ipairs(allSprites) do
-        local x, y = sprite:getPosition()
-        sprite:moveTo(x, y+change)
+    local drawOffset <const> = playdate.graphics.getDrawOffset()
+
+        print("precase: ", drawOffset, yDistance, total_height)
+    if (drawOffset + yDistance >= 0) then
+        print("case 1: ", drawOffset + yDistance, 0)
+        -- offset = 0
+    elseif (drawOffset + yDistance <= total_height) then
+        print("case 2: ", drawOffset + yDistance, total_height)
+        -- offset = total_height
     end
-end
 
-function play_intro()
-    gfx.clear()
+    playdate.graphics.setDrawOffset(0, offset)
 
-    local message <const> = "@ i d l e b e r g"
-    local messageWidth, messageHeight = gfx.getTextSize(message)
-
-    gfx.drawText(
-        message,
-        (display.getWidth() / 2) - (messageWidth / 2),
-        (display.getHeight() / 2) - (messageHeight / 2)
-    )
+    -- for index, sprite in ipairs(allSprites) do
+    --     local x, y = sprite:getPosition()
+    --     sprite:moveTo(x, y + yDistance)
+    -- end
 end
 
 function show_viewer()
