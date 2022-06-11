@@ -1,8 +1,5 @@
 import "CoreLibs/crank"
 import "CoreLibs/graphics"
-import "CoreLibs/keyboard"
-import "CoreLibs/object"
-import "CoreLibs/qrcode"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
@@ -15,12 +12,14 @@ local store <const> = playdate.datastore
 local timer <const> = playdate.timer
 
 local default_text <const> = "ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789"
-local line_height <const> = 18
+local line_height <const> = 20
 
 local intro_played = false
 local offset = 0
 local text_state = 0
 local total_height = 0
+local firstPosition = nil
+local lastPosition = nil
 
 function init()
     print('app.uuid=cfa01cf3922543ce8c8bf5cb584e66f3')
@@ -32,17 +31,8 @@ function init()
     toggle_mode(store.read("config").inverted == false)
     add_menu()
 
-    local categories <const> = get_categories()
-    local categories <const> = get_categories()
-
     fonts = get_fonts(categories)
     total_height = table.length(fonts) * line_height
-end
-
-init()
-
-function playdate.update()
-    playdate.timer.updateTimers()
 
     local delay <const> = intro_played and 0 or 1000
     local timer = playdate.timer.new(delay, 0, 1)
@@ -57,25 +47,48 @@ function playdate.update()
     end
 end
 
-function playdate.downButtonDown()
-    lock_screen(display.getHeight())
+init()
+
+function playdate.update()
+    gfx.sprite.update()
+    playdate.timer.updateTimers()
+
+    if playdate.buttonJustPressed(playdate.kButtonA) then
+        text_state = 0
+        show_viewer()
+    end
+
+    if playdate.buttonJustPressed(playdate.kButtonLeft) then
+        text_state = text_state == 0 and 2 or text_state - 1
+        show_viewer()
+    end
+
+    if playdate.buttonJustPressed(playdate.kButtonRight) then
+        text_state = text_state == 2 and 0 or text_state + 1
+        show_viewer()
+    end
 end
 
-function playdate.upButtonDown()
+function playdate.downButtonDown()
     lock_screen(-display.getHeight())
 end
 
-function playdate.cranked(change)
-    lock_screen(math.floor(change))
+function playdate.upButtonDown()
+    lock_screen(display.getHeight())
+end
+
+function playdate.cranked(change, acceleratedChange)
+    lock_screen(change)
 end
 
 function lock_screen(change)
-    if (offset + change >= total_height - display.getHeight() * 3/4) then
-        offset = total_height - display.getHeight() * 3/4
-    elseif (offset + change <= 0 - display.getHeight() / 4) then
-        offset = 0 - display.getHeight() / 4
-    else
-        offset = offset + change
+    local allSprites <const> = playdate.graphics.sprite.getAllSprites()
+
+    offset = offset + change
+
+    for index, sprite in ipairs(allSprites) do
+        local x, y = sprite:getPosition()
+        sprite:moveTo(x, y+change)
     end
 end
 
@@ -94,18 +107,7 @@ end
 
 function show_viewer()
     gfx.clear()
-
-    if playdate.buttonJustPressed(playdate.kButtonA) then
-        text_state = 0
-    end
-
-    if playdate.buttonJustPressed(playdate.kButtonLeft) then
-        text_state = text_state == 0 and 2 or text_state - 1
-    end
-
-    if playdate.buttonJustPressed(playdate.kButtonRight) then
-        text_state = text_state == 2 and 0 or text_state + 1
-    end
+    gfx.sprite.removeAll()
 
     if text_state == 1 then
         message = string.upper(default_text)
@@ -122,10 +124,17 @@ function show_viewer()
         local font <const> = gfx.font.new(file.path)
         gfx.setFont(font)
 
-        gfx.drawText(
-            message,
-            (display.getWidth() / 2) - (messageWidth / 2),
-            index * line_height - offset - line_height / 2
+        local textImage = gfx.image.new(400, line_height)
+        gfx.pushContext(textImage)
+            gfx.drawText(message, 0, 0)
+        gfx.popContext()
+
+        textSprite = gfx.sprite.new(textImage)
+        textSprite:moveTo(
+            (display.getWidth()) - (messageWidth / 2),
+            index * line_height + offset
         )
+        textSprite:add()
     end
 end
+

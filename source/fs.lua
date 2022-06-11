@@ -9,13 +9,14 @@ function get_categories()
     for index, file in ipairs(fonts) do
         if ends_with(file, "/") then
             table.insert(subdirs, file)
-        end        
+        end
     end
 
     return fonts
 end
 
-function get_fonts(categories)
+function get_fonts()
+    local categories <const> = get_categories()
     local fonts <const> = {}
 
     for index, category in ipairs(categories) do
@@ -36,8 +37,8 @@ function get_fonts(categories)
                     name = pretty_name,
                     category = category
                 })
-            end        
-        end    
+            end
+        end
     end
 
     table.sort(fonts, function(a, z) return a.name < z.name end)

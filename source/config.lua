@@ -18,27 +18,28 @@ function init_store()
 end
 
 function toggle_mode(condition)
+    gfx.sprite.update()
     condition = condition or false
 
     if condition then
-        set_dark_mode()
-    else
         set_light_mode()
+    else
+        set_dark_mode()
     end
 end
 
-function set_dark_mode()
+function set_light_mode()
     gfx.setBackgroundColor(gfx.kColorWhite)
     gfx.setImageDrawMode(gfx.kDrawModeCopy)
-    config.inverted = false
 
+    config.inverted = false
     store.write(config, "config")
 end
 
-function set_light_mode()
+function set_dark_mode()
     gfx.setBackgroundColor(gfx.kColorBlack)
     gfx.setImageDrawMode(gfx.kDrawModeInverted)
-    config.inverted = true
 
+    config.inverted = true
     store.write(config, "config")
 end
