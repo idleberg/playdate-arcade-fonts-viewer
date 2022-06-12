@@ -83,28 +83,20 @@ function playdate.cranked(change, acceleratedChange)
 end
 
 function move_sprite(yDistance)
-    print("playdate.graphics.getDrawOffset()", playdate.graphics.getDrawOffset())
-    -- local allSprites <const> = playdate.graphics.sprite.getAllSprites()
-
-    offset = offset + yDistance
 
     local drawOffset <const> = playdate.graphics.getDrawOffset()
+    offset = offset + yDistance
 
-        print("precase: ", drawOffset, yDistance, total_height)
-    if (drawOffset + yDistance >= 0) then
-        print("case 1: ", drawOffset + yDistance, 0)
-        -- offset = 0
-    elseif (drawOffset + yDistance <= total_height) then
-        print("case 2: ", drawOffset + yDistance, total_height)
-        -- offset = total_height
+    if (offset >= display.getHeight() / 4) then
+        offset = display.getHeight() / 4
+        return nil
+    -- elseif (-playdate.graphics.getDrawOffset() <= total_height + display.getHeight() * 3/4) then
+        -- offset = total_height + display.getHeight() * 3/4
+        -- return nil
+    -- else
     end
 
-    playdate.graphics.setDrawOffset(0, offset)
-
-    -- for index, sprite in ipairs(allSprites) do
-    --     local x, y = sprite:getPosition()
-    --     sprite:moveTo(x, y + yDistance)
-    -- end
+    playdate.graphics.setDrawOffset(0, math.floor(offset))
 end
 
 function show_viewer()
@@ -134,7 +126,7 @@ function show_viewer()
         textSprite = gfx.sprite.new(textImage)
         textSprite:moveTo(
             (display.getWidth()) - (messageWidth / 2),
-            index * line_height + offset
+            index * line_height
         )
         textSprite:add()
     end
