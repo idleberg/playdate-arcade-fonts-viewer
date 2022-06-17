@@ -89,11 +89,8 @@ function move_sprite(yDistance)
 
     if (offset >= display.getHeight() / 4) then
         offset = display.getHeight() / 4
-        return nil
-    -- elseif (-playdate.graphics.getDrawOffset() <= total_height + display.getHeight() * 3/4) then
-        -- offset = total_height + display.getHeight() * 3/4
-        -- return nil
-    -- else
+    elseif (total_height + offset < display.getHeight() * 3/4) then
+        offset = -1 * total_height + display.getHeight() * 3/4
     end
 
     playdate.graphics.setDrawOffset(0, math.floor(offset))
