@@ -25,19 +25,15 @@ function get_fonts()
         for index, file in ipairs(files) do
             file = basename(file)
 
-            -- only include fixed width fonts
-            if not ends_with(file, "(auto-sized)") then
-                pretty_name = file:gsub("%(fixed width%)", "")
-                pretty_name = pretty_name:gsub("[^%w%s]+", "")
-                pretty_name = string.upper(pretty_name)
-                pretty_name = trim(pretty_name)
+            pretty_name = file:gsub("[^%w%s]+", "")
+            pretty_name = string.upper(pretty_name)
+            pretty_name = trim(pretty_name)
 
-                table.insert(fonts, {
-                    path = "fonts/" .. category .. file,
-                    name = pretty_name,
-                    category = category
-                })
-            end
+            table.insert(fonts, {
+                path = "fonts/" .. category .. file,
+                name = pretty_name,
+                category = category
+            })
         end
     end
 

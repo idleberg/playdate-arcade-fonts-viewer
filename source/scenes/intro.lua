@@ -6,6 +6,7 @@ function play_intro()
 
     local message <const> = "@ i d l e b e r g"
     local messageWidth, messageHeight = gfx.getTextSize(message)
+    gfx.setFont(gfx.font.kVariantNormal)
 
     gfx.drawText(
         message,
