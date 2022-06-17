@@ -1,5 +1,12 @@
 {
     "Lua.diagnostics.globals": [
-        "dump"
+        "import",
+        "playdate"
+    ],
+    "Lua.runtime.nonstandardSymbol": [
+        "+=",
+        "-=",
+        "*=",
+        "/="
     ]
 }
