@@ -10,13 +10,13 @@ jobs:
     name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Install SDK
         uses: idleberg/setup-playdate-sdk@v0.2.0
 
-      - name: Build project
+      - name: Build Project
         run: |
           pdc source viewer.pdx
           zip -r -9 viewer-${{ github.ref_name }}.zip viewer.pdx LICENSE
