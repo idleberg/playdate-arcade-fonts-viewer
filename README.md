@@ -2,6 +2,9 @@
 
 > A simple viewer for my collection of [arcade fonts][] for the Playdate
 
+[![License](https://img.shields.io/github/license/idleberg/playdate-arcade-fonts-viewer?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/github/v/tag/idleberg/playdate-arcade-fonts-viewer?style=for-the-badge)](https://github.com/idleberg/playdate-arcade-fonts-viewer/releases)
+
 ![Screenshot](https://raw.github.com/idleberg/playdate-arcade-fonts-viewer/main/screenshot.png)
 
 ## Installation
