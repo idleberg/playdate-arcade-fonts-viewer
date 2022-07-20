@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-time pdc --verbose source viewer.pdx
+time pdc --verbose --strip source viewer.pdx
