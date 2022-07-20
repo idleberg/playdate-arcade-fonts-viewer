@@ -21,7 +21,8 @@ jobs:
 
       - name: Build Project
         run: |
-          pdc source ${{ env.BUILD_OUTPUT }}.pdx
+          ${GITHUB_WORKSPACE}/tools/bootstrap.sh
+          ${GITHUB_WORKSPACE}/tools/build.sh
           zip -r -9 ${{ env.BUILD_OUTPUT }}-${{ github.ref_name }}.zip ${{ env.BUILD_OUTPUT }}.pdx LICENSE
 
       - name: Create Release
