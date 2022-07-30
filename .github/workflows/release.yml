@@ -16,6 +16,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Bootstrap Project
+        run: tools/bootstrap.sh
+
       - uses: idleberg/create-playdate-release@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
