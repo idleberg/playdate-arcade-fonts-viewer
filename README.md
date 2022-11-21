@@ -4,12 +4,13 @@
 
 [![License](https://img.shields.io/github/license/idleberg/playdate-arcade-fonts-viewer?style=for-the-badge)](LICENSE)
 [![Version](https://img.shields.io/github/v/tag/idleberg/playdate-arcade-fonts-viewer?style=for-the-badge)](https://github.com/idleberg/playdate-arcade-fonts-viewer/releases)
+[![Download](https://img.shields.io/badge/APP-DOWNLOAD-yellow?style=for-the-badge)][Playdate.Store]
 
 ![Screenshot](https://raw.github.com/idleberg/playdate-arcade-fonts-viewer/main/screenshot.png)
 
 ## Installation
 
-Get the latest version from [Playdate.Store][] or from the [releases page][] and install it on your Playdate [hardware][] or [simulator][].
+Get the latest version from the [Playdate.Store][] or the [releases page][] and install it on your Playdate [hardware][] or [simulator][].
 
 ## License
 
