@@ -19,7 +19,7 @@ jobs:
       - name: Bootstrap Project
         run: tools/bootstrap.sh
 
-      - uses: idleberg/create-playdate-release@main
+      - uses: idleberg/create-playdate-release@809e48f # v2.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           target_folder: font_viewer
