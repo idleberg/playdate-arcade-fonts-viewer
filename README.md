@@ -12,6 +12,10 @@
 
 Get the latest version from the [Playdate.Store][] or the [releases page][] and install it on your Playdate [hardware][] or [simulator][].
 
+## Related
+
+- [Playdate SDK Feed](https://github.com/idleberg/playdate-sdk-feed)
+
 ## License
 
 This work is licensed under [The MIT License][].
