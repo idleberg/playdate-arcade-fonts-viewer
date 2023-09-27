@@ -14,6 +14,7 @@ Get the latest version from the [Playdate.Store][] or the [releases page][] and 
 
 ## Related
 
+- [Playdate Arcade Fonts](https://github.com/idleberg/playdate-arcade-fonts)
 - [Playdate SDK Feed](https://github.com/idleberg/playdate-sdk-feed)
 
 ## License
